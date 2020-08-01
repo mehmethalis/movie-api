@@ -1,2 +1,3 @@
 # movie-api
-Movie API - NodeJs
+Movie API - NodeJs api structure
+

@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
-app.use('/api/movie', movieRouter);
+app.use('/api/movies', movieRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

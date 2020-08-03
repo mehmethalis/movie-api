@@ -19,9 +19,8 @@ router.post('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
 
     Director.aggregate([
-        { $lookup: { from: 'movies', localField: '_id', foreignField: 'director_id', as: 'movie' } }, {
-            $unwind: '$director'
-        }
+        { $lookup: { from: 'movies', localField: '_id', foreignField: 'director_id', as: 'movie' } }
+
     ]).then((err, data) => {
         if (err) {
             res.json(err);

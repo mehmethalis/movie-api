@@ -4,7 +4,13 @@ const router = express.Router();
 //Models
 const Movie = require('../models/Movie');
 router.get('/', (req, res, next) => {
-    Movie.find({}, (err, data) => {
+    Movie.aggregate([
+
+        { $lookup: { from: 'directors', localField: 'director_id', foreignField: '_id', as: 'director' } }, {
+            $unwind: { path: '$movie', preserveNullAndEmptyArrays: true }
+        }
+
+    ]).then((err, data) => {
         if (err) {
             res.json(err);
         }

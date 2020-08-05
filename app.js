@@ -5,15 +5,28 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 
+
+
+
 const indexRouter = require('./routes/index');
 const movieRouter = require('./routes/movieRouter');
 const directorRouter = require('./routes/directorRouter');
 
 
+
 const app = express();
+
+
 
 //db connection
 const db = require('./helper/db.js')();
+
+//config
+const config = require('./config');
+app.set('api_secreet_key', config.api_secreet_key);
+//Middleware
+const veriyToken = require('./middleware/verify-token');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -28,6 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
+app.use('/api', veriyToken);
 app.use('/api/movies', movieRouter);
 app.use('/api/directors', directorRouter);
 

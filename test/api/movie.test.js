@@ -63,7 +63,7 @@ describe('(POST/) Movie', () => {
     });
 });
 
-describe('(GET/:director_id) Movie', () => {
+describe('(GET/:movie_id) Movie', () => {
     let token;
     before((done) => {
         chai.request(server).post('/authenticate').send({ userName: 'ozan', password: '12345' }).end((err, res) => {
@@ -72,7 +72,7 @@ describe('(GET/:director_id) Movie', () => {
             done();
         });
     });
-    it('it should get a movie with director_id', (done) => {
+    it('it should get a movie with movie_id', (done) => {
 
         const movie_id = '5f2855e189a3780f1c20e285';
         chai.request(server).get('/api/movies/' + movie_id).set('x-access-token', token).end((err, res) => {
@@ -88,7 +88,7 @@ describe('(GET/:director_id) Movie', () => {
 });
 
 
-describe('(PUT/:director_id) Movie', () => {
+describe('(PUT/:movie_id) Movie', () => {
     let token;
     before((done) => {
         chai.request(server).post('/authenticate').send({ userName: 'ozan', password: '12345' }).end((err, res) => {
@@ -96,7 +96,7 @@ describe('(PUT/:director_id) Movie', () => {
             done();
         });
     });
-    it('it should update a movie with director_id', (done) => {
+    it('it should update a movie with movie_id', (done) => {
         let movie = {
             director_id: '5f2854f38b925d0b5038dc43',
             title: 'udemy update',
@@ -116,6 +116,31 @@ describe('(PUT/:director_id) Movie', () => {
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('title').eql(movie.title);
+            done();
+        });
+    });
+});
+
+describe('(DELETE/:movie_id) Movie', () => {
+    let token;
+    before((done) => {
+        chai.request(server).post('/authenticate').send({ userName: 'ozan', password: '12345' }).end((err, res) => {
+            token = res.body.token;
+            done();
+        });
+    });
+    it('it should delete a movie with movie_id', (done) => {
+
+
+        let movie_id1 = '5f2c2a89ca1548272cd51b6b';
+        chai.request(server).delete('/api/movies/' + movie_id1).set('x-access-token', token).end((err, res) => {
+
+            if (err) {
+                console.log(err);
+            }
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('status').eql(1);
             done();
         });
     });

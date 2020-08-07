@@ -31,3 +31,7 @@ Movie API - NodeJs
 | --- | --- | --- | --- |
 | /register | `POST` | { username: 'foo', password:'1234' } | Create a new user. |
 | /authenticate | `POST` | { username: 'foo', password:'1234' } | Generate a token. |
+
+Demo
+<a href='https://movieapi-nodejs.herokuapp.com/' target=_blank> Live demo on Heroku </a>
+

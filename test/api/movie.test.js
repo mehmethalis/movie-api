@@ -30,6 +30,7 @@ describe('Movies directs tests', () => {
 
 });
 
+/*
 
 describe('(POST/) Movie', () => {
     let token;
@@ -86,3 +87,6 @@ describe('(GET/:movie_id) Movie', () => {
         });
     });
 });
+
+
+*/

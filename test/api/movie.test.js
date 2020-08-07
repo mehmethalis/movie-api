@@ -120,28 +120,3 @@ describe('(PUT/:movie_id) Movie', () => {
         });
     });
 });
-
-describe('(DELETE/:movie_id) Movie', () => {
-    let token;
-    before((done) => {
-        chai.request(server).post('/authenticate').send({ userName: 'ozan', password: '12345' }).end((err, res) => {
-            token = res.body.token;
-            done();
-        });
-    });
-    it('it should delete a movie with movie_id', (done) => {
-
-
-        let movie_id1 = '5f2c2a89ca1548272cd51b6b';
-        chai.request(server).delete('/api/movies/' + movie_id1).set('x-access-token', token).end((err, res) => {
-
-            if (err) {
-                console.log(err);
-            }
-            res.should.have.status(200);
-            res.body.should.be.a('object');
-            res.body.should.have.property('status').eql(1);
-            done();
-        });
-    });
-});

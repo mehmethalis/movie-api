@@ -6,14 +6,13 @@ const { token } = require('morgan');
 
 chai.use(chaiHttp);
 
-
+/*
 describe('Movies directs tests', () => {
     let token;
-    before((done) => {
+    before(() => {
         chai.request(server).post('/authenticate').send({ userName: 'ozan', password: '12345' }).end((err, res) => {
             token = res.body.token;
             console.log('TOKEN : ' + token + '\n');
-            done();
         });
     });
 
@@ -30,7 +29,7 @@ describe('Movies directs tests', () => {
 
 });
 
-/*
+
 
 describe('(POST/) Movie', () => {
     let token;
